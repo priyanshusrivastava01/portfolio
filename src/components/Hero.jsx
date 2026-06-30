@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 // Adjusted import path for the video and poster
-import heroVideo from '../assets/hero video/Animated_developer_speaking_to_v…_202606241428 (online-video-cutter.com).webm';
+import heroVideo from '../assets/hero video/Animated_developer_speaking_to_v…_202606241428 (online-video-cutter.com) (1).webm';
 import heroPoster from '../assets/hero video/wmremove-transformed.webp';
 
 
@@ -102,7 +102,7 @@ const Hero = () => {
               {/* Secondary Button */}
               <a 
                 href="#contact" 
-                className="px-6 py-2.5 md:px-7 md:py-3 text-xs md:text-sm rounded-full bg-black/10 border border-white text-white font-bold hover:bg-white/10 transition-all duration-300 backdrop-blur-md transform hover:-translate-y-0.5 inline-block text-center"
+                className="px-6 py-2.5 md:px-7 md:py-3 text-xs md:text-sm rounded-full bg-black/50 border border-white text-white font-bold hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-0.5 inline-block text-center"
               >
                 Contact Me
               </a>
@@ -111,7 +111,7 @@ const Hero = () => {
             {/* Play/Pause Button - Translucent and positioned below View My Work */}
             <button
               onClick={togglePlayPause}
-              className="px-6 py-2.5 md:px-7 md:py-3 text-xs md:text-sm rounded-full bg-white/10 border border-white/20 text-white font-bold hover:bg-white/20 transition-all duration-300 backdrop-blur-md transform hover:-translate-y-0.5 flex items-center justify-center gap-2 w-fit shadow-md select-none"
+              className="px-6 py-2.5 md:px-7 md:py-3 text-xs md:text-sm rounded-full bg-black/50 border border-white/20 text-white font-bold hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 w-fit shadow-md select-none"
             >
               {isPlaying ? (
                 <>
