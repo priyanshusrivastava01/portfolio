@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 // Adjusted import path for the video and poster
-import heroVideo from '../assets/hero video/Animated_developer_speaking_to_v…_202606241428 (online-video-cutter.com).mp4';
+import heroVideo from '../assets/hero video/Animated_developer_speaking_to_v…_202606241428 (online-video-cutter.com).webm';
 import heroPoster from '../assets/hero video/wmremove-transformed.webp';
 
 
@@ -28,6 +28,7 @@ const Hero = () => {
         setIsPlaying(false);
       } else {
         videoRef.current.muted = false; // Ensure audio plays
+        videoRef.current.volume = 1.0;  // Ensure maximum volume
         videoRef.current.play()
           .then(() => {
             setIsPlaying(true);
@@ -46,12 +47,10 @@ const Hero = () => {
         playsInline
         webkit-playsinline="true"
         preload="auto"
-        muted={!isPlaying}
         poster={heroPoster}
-        className="absolute top-0 left-0 w-full h-full object-cover object-[75%_center] z-0 transform-gpu"
-        style={{ transform: 'translate3d(0, 0, 0)', willChange: 'transform' }}
+        className="absolute top-0 left-0 w-full h-full object-cover object-[75%_center] z-0"
       >
-        <source src={heroVideo} type="video/mp4" />
+        <source src={heroVideo} type="video/webm" />
         Your browser does not support the video tag.
       </video>
 
