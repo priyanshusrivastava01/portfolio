@@ -9,7 +9,6 @@ import heroPoster from '../assets/hero video/wmremove-transformed.webp';
 const Hero = () => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
     AOS.init({
@@ -32,7 +31,6 @@ const Hero = () => {
         videoRef.current.play()
           .then(() => {
             setIsPlaying(true);
-            setHasStarted(true);
           })
           .catch(err => console.log("Play failed: ", err));
       }
@@ -46,24 +44,16 @@ const Hero = () => {
         ref={videoRef}
         loop
         playsInline
-        preload="metadata"
+        webkit-playsinline="true"
+        preload="auto"
         muted={!isPlaying}
+        poster={heroPoster}
         className="absolute top-0 left-0 w-full h-full object-cover object-[75%_center] z-0 transform-gpu"
         style={{ transform: 'translate3d(0, 0, 0)', willChange: 'transform' }}
       >
         <source src={heroVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-
-      {/* Static Poster Image shown initially */}
-      {!hasStarted && (
-        <img
-          src={heroPoster}
-          alt="Hero Background Poster"
-          className="absolute top-0 left-0 w-full h-full object-cover object-[75%_center] z-0 transform-gpu"
-          style={{ transform: 'translate3d(0, 0, 0)', willChange: 'transform' }}
-        />
-      )}
 
       {/* Dark overlay factor for optimized readability without completely muddying up the red tones */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent z-10 pointer-events-none" />
