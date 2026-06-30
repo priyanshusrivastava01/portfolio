@@ -1,29 +1,26 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useSpring, useMotionValueEvent } from 'framer-motion';
 
-const TagCard = ({ number, title, text, className, aosDelay, aosType, pathLength, containerRef }) => {
+const TagCard = ({ number, title, text, className, aosDelay, aosType }) => {
   const ref = useRef(null);
   const [isActive, setIsActive] = useState(false);
 
-  useMotionValueEvent(pathLength, "change", (latest) => {
-    if (!ref.current || !containerRef.current) return;
+  useEffect(() => {
+    if (!ref.current) return;
 
-    const cardRect = ref.current.getBoundingClientRect();
-    const containerRect = containerRef.current.getBoundingClientRect();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsActive(entry.isIntersecting);
+      },
+      {
+        rootMargin: "-25% 0px -25% 0px", // triggers when card is in the central region of viewport
+        threshold: 0.1,
+      }
+    );
 
-    const cardTopRelativeToContainer = cardRect.top - containerRect.top;
-    const containerHeight = containerRect.height;
-
-    // Trigger when the line tip is 50px into the card
-    const triggerY = cardTopRelativeToContainer + 50;
-    const lineTipY = latest * containerHeight;
-
-    if (lineTipY >= triggerY && !isActive) {
-      setIsActive(true);
-    } else if (lineTipY < triggerY && isActive) {
-      setIsActive(false);
-    }
-  });
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
@@ -175,8 +172,6 @@ const Expertise = () => {
             className="md:absolute md:top-[10px] md:right-[5%] lg:right-[10%] rotate-2 md:rotate-6"
             aosType="fade-left"
             aosDelay="100"
-            pathLength={pathLength}
-            containerRef={containerRef}
           />
           <TagCard
             number="02"
@@ -185,18 +180,15 @@ const Expertise = () => {
             className="md:absolute md:top-[450px] md:left-[5%] lg:left-[10%] -rotate-2 md:-rotate-6"
             aosType="fade-right"
             aosDelay="200"
-            pathLength={pathLength}
-            containerRef={containerRef}
           />
 
           <TagCard
             number="03"
             title="AI & Machine Learning"
-            text="Developing intelligent applications using NLP, Generative AI, Computer Vision, LLMs, and data-driven machine learning solutions." className="md:absolute md:top-[700px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3"
+            text="Developing intelligent applications using NLP, Generative AI, Computer Vision, LLMs, and data-driven machine learning solutions." 
+            className="md:absolute md:top-[700px] md:right-[5%] lg:right-[15%] rotate-1 md:rotate-3"
             aosType="fade-left"
             aosDelay="300"
-            pathLength={pathLength}
-            containerRef={containerRef}
           />
 
           <TagCard
@@ -206,8 +198,6 @@ const Expertise = () => {
             className="md:absolute md:top-[1050px] md:left-[15%] lg:left-[25%] -rotate-1 md:-rotate-3"
             aosType="fade-right"
             aosDelay="400"
-            pathLength={pathLength}
-            containerRef={containerRef}
           />
 
           {/* Hand-drawn end text */}

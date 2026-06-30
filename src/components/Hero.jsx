@@ -15,7 +15,8 @@ const Hero = () => {
     AOS.init({
       duration: 1000,
       once: true,
-      easing: 'ease-out'
+      easing: 'ease-out',
+      disable: 'mobile'
     });
   }, []);
 
@@ -45,7 +46,10 @@ const Hero = () => {
         ref={videoRef}
         loop
         playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover object-[75%_center] z-0"
+        preload="metadata"
+        muted={!isPlaying}
+        className="absolute top-0 left-0 w-full h-full object-cover object-[75%_center] z-0 transform-gpu"
+        style={{ transform: 'translate3d(0, 0, 0)', willChange: 'transform' }}
       >
         <source src={heroVideo} type="video/mp4" />
         Your browser does not support the video tag.
@@ -56,7 +60,8 @@ const Hero = () => {
         <img
           src={heroPoster}
           alt="Hero Background Poster"
-          className="absolute top-0 left-0 w-full h-full object-cover object-[75%_center] z-0"
+          className="absolute top-0 left-0 w-full h-full object-cover object-[75%_center] z-0 transform-gpu"
+          style={{ transform: 'translate3d(0, 0, 0)', willChange: 'transform' }}
         />
       )}
 

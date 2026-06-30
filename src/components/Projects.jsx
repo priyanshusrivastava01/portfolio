@@ -148,7 +148,7 @@ const Projects = () => {
             <motion.div
               key={index}
               variants={cardVariants}
-              className={`group relative bg-white border border-gray-200/70 rounded-[1.8rem] p-6 md:p-10 flex flex-col justify-between hover:border-red-500/20 hover:shadow-[0_30px_70px_rgba(255,42,42,0.05)] hover:-translate-y-1.5 transition-all duration-500 z-10 overflow-hidden ${
+              className={`group relative bg-white border border-gray-200/70 rounded-[1.8rem] p-6 md:p-10 flex flex-col justify-between hover:border-red-500/20 hover:shadow-[0_30px_70px_rgba(255,42,42,0.05)] hover:-translate-y-1.5 transition-[transform,box-shadow,border-color] duration-500 z-10 overflow-hidden ${
                 project.isFeatured ? 'md:col-span-2' : ''
               }`}
             >
